@@ -54,6 +54,27 @@ async function run() {
       res.send(result);
     });
 
+    // Get Individual Task
+    app.get("/mytask", verifyJWT, async (req, res) => {
+      const decodedEmail = req.decoded.email;
+      const email = req.query.email;
+      if (email === decodedEmail) {
+        const query = { email: email };
+        const cursor = taskCollection.find(query);
+        const task = await cursor.toArray();
+        res.send(task);
+      } else {
+        res.status(403).send({ message: "Forbidden Access" });
+      }
+    });
+    
+    // Delete Task
+    app.delete("/task/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await taskCollection.deleteOne(query);
+      res.send(result);
+    });
   } finally {
   }
 }
