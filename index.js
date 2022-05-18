@@ -36,7 +36,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    const carCollection = client.db("RoyalAuto").collection("car");
+    const taskCollection = client.db("ToDoApp").collection("task");
 
     // Auth
     app.post("/login", async (req, res) => {
@@ -46,7 +46,14 @@ async function run() {
       });
       res.send({ accessToken });
     });
-    
+
+    // Add Task
+    app.post("/task", async (req, res) => {
+      const newTask = req.body;
+      const result = await taskCollection.insertOne(newTask);
+      res.send(result);
+    });
+
   } finally {
   }
 }
