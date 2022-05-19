@@ -67,12 +67,27 @@ async function run() {
         res.status(403).send({ message: "Forbidden Access" });
       }
     });
-    
+
     // Delete Task
     app.delete("/task/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await taskCollection.deleteOne(query);
+      res.send(result);
+    });
+
+    // Completed Task
+    app.put("/task/:id", async (req, res) => {
+      const id = req.params.id;
+      const newCompleted = req.body;
+      const filter = { _id: ObjectId(id) };
+      const options = { upsert: true };
+      const updatedDoc = { $set: { completed: newCompleted.complete } };
+      const result = await taskCollection.updateOne(
+        filter,
+        updatedDoc,
+        options
+      );
       res.send(result);
     });
   } finally {
