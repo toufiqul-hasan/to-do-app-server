@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/toufiqul-hasan/to-do-app-server.git"
+    "url": "git+https://github.com/toufiqul-hasan/to-do-app-server-side-side.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/toufiqul-hasan/to-do-app-server/issues"
+    "url": "https://github.com/toufiqul-hasan/to-do-app-server-side/issues"
   },
-  "homepage": "https://github.com/toufiqul-hasan/to-do-app-server#readme",
+  "homepage": "https://github.com/toufiqul-hasan/to-do-app-server-side#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
